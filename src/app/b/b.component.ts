@@ -15,8 +15,21 @@ export class BComponent implements OnInit {
   counter;
   constructor(private store: Store<AppState>) {
     this.counter = store.select<any>('counter');
+    store.subscribe(
+      (res) => {
+        console.log(res);
+        this.load(res);
+      }
+    )
+
   }
   ngOnInit() {
-    
+
   }
+  load(res) {
+    if (res.counter == '2' ){
+      alert(res);
+    }
+  }
+
 }
